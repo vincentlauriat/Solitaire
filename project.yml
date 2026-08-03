@@ -1,0 +1,48 @@
+name: Solitaire
+options:
+  bundleIdPrefix: fr.lauriat
+  deploymentTarget:
+    macOS: "14.0"
+
+# Schemes explicites (sinon xcodegen n'en génère pas → schemes perdus à chaque régénération).
+schemes:
+  Solitaire:
+    build:
+      targets:
+        Solitaire: all
+    run:
+      config: Debug
+
+targets:
+  Solitaire:
+    type: application
+    platform: macOS
+    deploymentTarget: "14.0"
+    sources:
+      - path: Solitaire
+        excludes:
+          - "**/*.entitlements"
+          - "Info.plist"
+    settings:
+      base:
+        PRODUCT_NAME: Solitaire
+        PRODUCT_BUNDLE_IDENTIFIER: fr.lauriat.solitaire
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        SWIFT_VERSION: "5.9"
+        MARKETING_VERSION: "1.0.0"
+        CURRENT_PROJECT_VERSION: "1"
+        MACOSX_DEPLOYMENT_TARGET: "14.0"
+        CODE_SIGN_ENTITLEMENTS: Solitaire/Solitaire.entitlements
+        CODE_SIGN_IDENTITY: ""
+        CODE_SIGNING_REQUIRED: NO
+        CODE_SIGNING_ALLOWED: NO
+    info:
+      path: Solitaire/Info.plist
+      properties:
+        CFBundleName: Solitaire
+        CFBundleDisplayName: Solitaire
+        CFBundleIdentifier: fr.lauriat.solitaire
+        CFBundleShortVersionString: "$(MARKETING_VERSION)"
+        CFBundleVersion: "$(CURRENT_PROJECT_VERSION)"
+        LSMinimumSystemVersion: "14.0"
+        NSHumanReadableCopyright: "© 2026 Vincent Lauriat"
