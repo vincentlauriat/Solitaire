@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Solitaire for macOS — a native Klondike where every card is drawn in code</title>
+<meta name="description" content="A beautiful native Klondike solitaire for macOS, written entirely in SwiftUI. Zero image assets — classic pip layouts, ornate face cards and lattice card backs are all drawn in code. Free, open source, signed &amp; notarized.">
+<meta property="og:title" content="Solitaire for macOS — every card drawn in code">
+<meta property="og:description" content="A beautiful native Klondike solitaire for macOS, 100% SwiftUI, zero image assets. Free, open source, signed &amp; notarized.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://vincentlauriat.github.io/Solitaire/">
+<meta property="og:image" content="https://vincentlauriat.github.io/Solitaire/screenshot.png">
+<meta name="theme-color" content="#0a1f16">
+<link rel="icon" type="image/png" href="assets/icon.png">
+<style>
+  :root {
+    --felt: #0e2a1e;
+    --felt-deep: #071710;
+    --surface: #12312399;
+    --border: #2c5a44;
+    --border-soft: #1e422f;
+    --text: #f0ece1;
+    --muted: #a8bbae;
+    --gold: #d9b45c;
+    --gold-deep: #b8933f;
+    --red: #c8515c;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background:
+      radial-gradient(1100px 500px at 50% -10%, #1c4d36 0%, transparent 60%),
+      linear-gradient(180deg, var(--felt), var(--felt-deep) 85%);
+    background-color: var(--felt-deep);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
+    line-height: 1.6;
+  }
+  .serif { font-family: "New York", ui-serif, Georgia, "Times New Roman", serif; }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+  header { text-align: center; padding: 76px 0 40px; }
+  .suits { color: var(--gold); letter-spacing: .55em; font-size: .95rem; margin-bottom: 18px; }
+  .suits .r { color: var(--red); }
+  header img.icon { width: 128px; height: 128px; border-radius: 28px;
+    box-shadow: 0 14px 44px rgba(0,0,0,.55), 0 0 0 1px rgba(217,180,92,.25); }
+  h1 { font-size: 3rem; margin: 22px 0 6px; letter-spacing: -.015em; font-weight: 600; }
+  h1 .dim { color: var(--muted); font-weight: 400; }
+  .tagline { font-size: 1.22rem; color: var(--muted); max-width: 640px; margin: 0 auto; }
+  .tagline strong { color: var(--gold); font-weight: 600; }
+  .buttons { margin: 34px 0 10px; display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .btn { display: inline-block; padding: 13px 26px; border-radius: 12px;
+    font-weight: 600; text-decoration: none; font-size: 1.02rem;
+    transition: transform .12s ease, box-shadow .12s ease; }
+  .btn:hover { transform: translateY(-2px); }
+  .btn-primary { background: linear-gradient(180deg, var(--gold), var(--gold-deep));
+    color: #241a05; box-shadow: 0 6px 24px rgba(217,180,92,.35); }
+  .btn-secondary { background: var(--surface); color: var(--text); border: 1px solid var(--border); }
+  .fineprint { color: var(--muted); font-size: .88rem; }
+  .shot { display: block; max-width: 100%; border-radius: 14px; border: 1px solid var(--border-soft);
+    margin: 48px auto 0; box-shadow: 0 24px 70px rgba(0,0,0,.55); }
+  section { padding: 58px 0 8px; }
+  h2 { font-size: 1.8rem; margin-bottom: 22px; letter-spacing: -.01em; font-weight: 600; }
+  h2 .em { color: var(--gold); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+  .card { background: var(--surface); border: 1px solid var(--border-soft);
+    border-radius: 14px; padding: 20px 22px; }
+  .card h3 { font-size: 1.05rem; margin-bottom: 6px; }
+  .card p { color: var(--muted); font-size: .95rem; }
+  .steps .step { display: flex; gap: 16px; margin-bottom: 22px; }
+  .step .pip { flex: 0 0 36px; height: 36px; border-radius: 50%;
+    background: var(--surface); border: 1px solid var(--border);
+    color: var(--gold); font-size: 1.05rem;
+    display: flex; align-items: center; justify-content: center; }
+  .step p { color: var(--muted); }
+  .step strong { color: var(--text); }
+  code, pre { font-family: "SF Mono", ui-monospace, Menlo, monospace;
+    background: #0c241a; border: 1px solid var(--border-soft); border-radius: 8px; }
+  code { padding: 2px 7px; font-size: .9em; }
+  pre { padding: 18px 20px; overflow-x: auto; margin: 16px 0; }
+  pre code { background: none; border: none; padding: 0; }
+  a { color: var(--gold); }
+  footer { text-align: center; padding: 64px 0 40px; color: var(--muted); font-size: .9rem; }
+  footer a { color: var(--muted); }
+  @media (prefers-reduced-motion: reduce) { .btn:hover { transform: none; } }
+  @media (max-width: 620px) { h1 { font-size: 2.2rem; } header { padding: 52px 0 32px; } }
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <p class="suits" aria-hidden="true">♠ <span class="r">♥</span> ♦ <span class="r">♣</span></p>
+  <img class="icon" src="assets/icon.png" alt="Solitaire app icon: ace of spades over a navy card back on green felt">
+  <h1 class="serif">Solitaire <span class="dim">for macOS</span></h1>
+  <p class="tagline">A native Klondike laid on a felt of gradients — <strong>every card is drawn in code</strong>. Classic pips, ornate face cards, a navy lattice back. Not a single image asset.</p>
+  <div class="buttons">
+    <a class="btn btn-primary" href="https://github.com/vincentlauriat/Solitaire/releases/latest">⬇︎&nbsp; Download for macOS</a>
+    <a class="btn btn-secondary" href="https://github.com/vincentlauriat/Solitaire">View on GitHub</a>
+  </div>
+  <p class="fineprint">Free &amp; open source (MIT) · macOS 14+ · signed &amp; notarized DMG · 100% SwiftUI</p>
+  <img class="shot" src="screenshot.png" alt="Solitaire running on macOS: green felt table, seven tableau columns of hand-drawn cards, foundations, score bar">
+</header>
+
+<section class="wrap">
+  <h2 class="serif">Features</h2>
+  <div class="grid">
+    <div class="card"><h3>🂡 Full Klondike</h3><p>Draw 1 or draw 3, standard scoring, timer and move counter. The rules you know, the way you expect them.</p></div>
+    <div class="card"><h3>🖐️ Real drag &amp; drop</h3><p>Move single cards or whole sequences. Invalid drops glide back; valid ones snap into place instantly.</p></div>
+    <div class="card"><h3>⚡ Double-click to play</h3><p>Double-click any eligible card and it flies to its foundation. Click the stock to draw, click again to recycle.</p></div>
+    <div class="card"><h3>🎬 Animated everything</h3><p>Cascading deal, 3D card flips, springy card flights — and confetti when you win.</p></div>
+    <div class="card"><h3>↩️ Unlimited undo</h3><p>⌘Z takes back any move, ⌘N deals a fresh game. No penalties, no nagging.</p></div>
+    <div class="card"><h3>🪄 Auto-complete</h3><p>Once the whole board is face up, one click on the magic wand finishes the game for you, card by card.</p></div>
+  </div>
+</section>
+
+<section class="wrap">
+  <h2 class="serif">Every card, <span class="em">drawn in code</span></h2>
+  <div class="steps">
+    <div class="step"><span class="pip" aria-hidden="true">♠</span><p><strong>Pips sit where a real deck puts them.</strong> Each rank from 2 to 10 uses the classic printed layout — mirrored bottom half included — positioned in SwiftUI from a table of unit coordinates.</p></div>
+    <div class="step"><span class="pip" aria-hidden="true">♥</span><p><strong>Face cards are typographic.</strong> Jack, Queen and King are serif letterforms framed by a gold-lined inset — an engraving reduced to its essence.</p></div>
+    <div class="step"><span class="pip" aria-hidden="true">♦</span><p><strong>The back is a Canvas.</strong> Navy gradient, gold diagonal lattice, spade medallion — drawn with a few paths, crisp at any size.</p></div>
+    <div class="step"><span class="pip" aria-hidden="true">♣</span><p><strong>Even the app icon is a script.</strong> <code>Scripts/make-app-icon.swift</code> renders the ace-over-back artwork at every size, pixel-exact, no design tool involved.</p></div>
+  </div>
+</section>
+
+<section class="wrap">
+  <h2 class="serif">Build from source</h2>
+  <pre><code>brew install xcodegen
+git clone https://github.com/vincentlauriat/Solitaire.git
+cd Solitaire
+xcodegen generate
+open Solitaire.xcodeproj   # then ⌘R</code></pre>
+  <p>The engine, the rendering and the interactions are three small layers — a pure-logic <code>KlondikeGame</code>, a <code>Design</code> folder that paints the cards, and one <code>GameView</code> that wires the drag &amp; drop. Start with the <a href="https://github.com/vincentlauriat/Solitaire#readme">README</a>.</p>
+</section>
+
+<footer>
+  <p>MIT © Vincent Lauriat · <a href="https://github.com/vincentlauriat/Solitaire">github.com/vincentlauriat/Solitaire</a> · <a href="https://vincentlauriat.github.io/">more apps</a></p>
+</footer>
+
+</body>
+</html>
