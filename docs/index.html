@@ -1,139 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="--accent:#d9b45c;--on-accent:#141414;--accent-ink:#85671f">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Solitaire for macOS — a native Klondike where every card is drawn in code</title>
 <meta name="description" content="A beautiful native Klondike solitaire for macOS, written entirely in SwiftUI. Zero image assets — classic pip layouts, ornate face cards and lattice card backs are all drawn in code. Free, open source, signed &amp; notarized.">
-<meta property="og:title" content="Solitaire for macOS — every card drawn in code">
-<meta property="og:description" content="A beautiful native Klondike solitaire for macOS, 100% SwiftUI, zero image assets. Free, open source, signed &amp; notarized.">
+<meta name="theme-color" content="#eff1f2">
 <meta property="og:type" content="website">
+<meta property="og:title" content="Solitaire for macOS — a native Klondike where every card is drawn in code">
+<meta property="og:description" content="A beautiful native Klondike solitaire for macOS, written entirely in SwiftUI. Zero image assets — classic pip layouts, ornate face cards and lattice card backs are all drawn in code. Free, open source, signed &amp; notarized.">
 <meta property="og:url" content="https://vincentlauriat.github.io/Solitaire/">
 <meta property="og:image" content="https://vincentlauriat.github.io/Solitaire/screenshot.png">
-<meta name="theme-color" content="#0a1f16">
-<link rel="icon" type="image/png" href="assets/icon.png">
-<style>
-  :root {
-    --felt: #0e2a1e;
-    --felt-deep: #071710;
-    --surface: #12312399;
-    --border: #2c5a44;
-    --border-soft: #1e422f;
-    --text: #f0ece1;
-    --muted: #a8bbae;
-    --gold: #d9b45c;
-    --gold-deep: #b8933f;
-    --red: #c8515c;
-  }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    background:
-      radial-gradient(1100px 500px at 50% -10%, #1c4d36 0%, transparent 60%),
-      linear-gradient(180deg, var(--felt), var(--felt-deep) 85%);
-    background-color: var(--felt-deep);
-    color: var(--text);
-    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
-    line-height: 1.6;
-  }
-  .serif { font-family: "New York", ui-serif, Georgia, "Times New Roman", serif; }
-  .wrap { max-width: 960px; margin: 0 auto; padding: 0 24px; }
-  header { text-align: center; padding: 76px 0 40px; }
-  .suits { color: var(--gold); letter-spacing: .55em; font-size: .95rem; margin-bottom: 18px; }
-  .suits .r { color: var(--red); }
-  header img.icon { width: 128px; height: 128px; border-radius: 28px;
-    box-shadow: 0 14px 44px rgba(0,0,0,.55), 0 0 0 1px rgba(217,180,92,.25); }
-  h1 { font-size: 3rem; margin: 22px 0 6px; letter-spacing: -.015em; font-weight: 600; }
-  h1 .dim { color: var(--muted); font-weight: 400; }
-  .tagline { font-size: 1.22rem; color: var(--muted); max-width: 640px; margin: 0 auto; }
-  .tagline strong { color: var(--gold); font-weight: 600; }
-  .buttons { margin: 34px 0 10px; display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
-  .btn { display: inline-block; padding: 13px 26px; border-radius: 12px;
-    font-weight: 600; text-decoration: none; font-size: 1.02rem;
-    transition: transform .12s ease, box-shadow .12s ease; }
-  .btn:hover { transform: translateY(-2px); }
-  .btn-primary { background: linear-gradient(180deg, var(--gold), var(--gold-deep));
-    color: #241a05; box-shadow: 0 6px 24px rgba(217,180,92,.35); }
-  .btn-secondary { background: var(--surface); color: var(--text); border: 1px solid var(--border); }
-  .fineprint { color: var(--muted); font-size: .88rem; }
-  .shot { display: block; max-width: 100%; border-radius: 14px; border: 1px solid var(--border-soft);
-    margin: 48px auto 0; box-shadow: 0 24px 70px rgba(0,0,0,.55); }
-  section { padding: 58px 0 8px; }
-  h2 { font-size: 1.8rem; margin-bottom: 22px; letter-spacing: -.01em; font-weight: 600; }
-  h2 .em { color: var(--gold); }
-  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
-  .card { background: var(--surface); border: 1px solid var(--border-soft);
-    border-radius: 14px; padding: 20px 22px; }
-  .card h3 { font-size: 1.05rem; margin-bottom: 6px; }
-  .card p { color: var(--muted); font-size: .95rem; }
-  .steps .step { display: flex; gap: 16px; margin-bottom: 22px; }
-  .step .pip { flex: 0 0 36px; height: 36px; border-radius: 50%;
-    background: var(--surface); border: 1px solid var(--border);
-    color: var(--gold); font-size: 1.05rem;
-    display: flex; align-items: center; justify-content: center; }
-  .step p { color: var(--muted); }
-  .step strong { color: var(--text); }
-  code, pre { font-family: "SF Mono", ui-monospace, Menlo, monospace;
-    background: #0c241a; border: 1px solid var(--border-soft); border-radius: 8px; }
-  code { padding: 2px 7px; font-size: .9em; }
-  pre { padding: 18px 20px; overflow-x: auto; margin: 16px 0; }
-  pre code { background: none; border: none; padding: 0; }
-  a { color: var(--gold); }
-  footer { text-align: center; padding: 64px 0 40px; color: var(--muted); font-size: .9rem; }
-  footer a { color: var(--muted); }
-  @media (prefers-reduced-motion: reduce) { .btn:hover { transform: none; } }
-  @media (max-width: 620px) { h1 { font-size: 2.2rem; } header { padding: 52px 0 32px; } }
-</style>
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/icon.png">
+<link rel="preload" href="/assets/schibsted.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/monograph/v1/monograph.css">
+
 </head>
 <body>
-
-<header class="wrap">
-  <p class="suits" aria-hidden="true">♠ <span class="r">♥</span> ♦ <span class="r">♣</span></p>
-  <img class="icon" src="assets/icon.png" alt="Solitaire app icon: ace of spades over a navy card back on green felt">
-  <h1 class="serif">Solitaire <span class="dim">for macOS</span></h1>
-  <p class="tagline">A native Klondike laid on a felt of gradients — <strong>every card is drawn in code</strong>. Classic pips, ornate face cards, a navy lattice back. Not a single image asset.</p>
-  <div class="buttons">
-    <a class="btn btn-primary" href="https://github.com/vincentlauriat/Solitaire/releases/latest">⬇︎&nbsp; Download for macOS</a>
-    <a class="btn btn-secondary" href="https://github.com/vincentlauriat/Solitaire">View on GitHub</a>
-  </div>
-  <p class="fineprint">Free &amp; open source (MIT) · macOS 14+ · signed &amp; notarized DMG · 100% SwiftUI</p>
-  <img class="shot" src="screenshot.png" alt="Solitaire running on macOS: green felt table, seven tableau columns of hand-drawn cards, foundations, score bar">
-</header>
-
-<section class="wrap">
-  <h2 class="serif">Features</h2>
-  <div class="grid">
-    <div class="card"><h3>🂡 Full Klondike</h3><p>Draw 1 or draw 3, standard scoring, timer and move counter. The rules you know, the way you expect them.</p></div>
-    <div class="card"><h3>🖐️ Real drag &amp; drop</h3><p>Move single cards or whole sequences. Invalid drops glide back; valid ones snap into place instantly.</p></div>
-    <div class="card"><h3>⚡ Double-click to play</h3><p>Double-click any eligible card and it flies to its foundation. Click the stock to draw, click again to recycle.</p></div>
-    <div class="card"><h3>🎬 Animated everything</h3><p>Cascading deal, 3D card flips, springy card flights — and confetti when you win.</p></div>
-    <div class="card"><h3>↩️ Unlimited undo</h3><p>⌘Z takes back any move, ⌘N deals a fresh game. No penalties, no nagging.</p></div>
-    <div class="card"><h3>🪄 Auto-complete</h3><p>Once the whole board is face up, one click on the magic wand finishes the game for you, card by card.</p></div>
-  </div>
-</section>
-
-<section class="wrap">
-  <h2 class="serif">Every card, <span class="em">drawn in code</span></h2>
-  <div class="steps">
-    <div class="step"><span class="pip" aria-hidden="true">♠</span><p><strong>Pips sit where a real deck puts them.</strong> Each rank from 2 to 10 uses the classic printed layout — mirrored bottom half included — positioned in SwiftUI from a table of unit coordinates.</p></div>
-    <div class="step"><span class="pip" aria-hidden="true">♥</span><p><strong>Face cards are typographic.</strong> Jack, Queen and King are serif letterforms framed by a gold-lined inset — an engraving reduced to its essence.</p></div>
-    <div class="step"><span class="pip" aria-hidden="true">♦</span><p><strong>The back is a Canvas.</strong> Navy gradient, gold diagonal lattice, spade medallion — drawn with a few paths, crisp at any size.</p></div>
-    <div class="step"><span class="pip" aria-hidden="true">♣</span><p><strong>Even the app icon is a script.</strong> <code>Scripts/make-app-icon.swift</code> renders the ace-over-back artwork at every size, pixel-exact, no design tool involved.</p></div>
-  </div>
-</section>
-
-<section class="wrap">
-  <h2 class="serif">Build from source</h2>
-  <pre><code>brew install xcodegen
+<a class="skip" href="#content"><span class="en">Skip to content</span><span class="fr">Aller au contenu</span><span class="zh">跳至內容</span></a>
+<header class="running"><div class="wrap">
+<a class="back" href="https://vincentlauriat.github.io/#w31"><svg class="arw l" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4"/></svg><span class="en">Vincent Lauriat</span><span class="fr">Vincent Lauriat</span><span class="zh">Vincent Lauriat</span></a>
+<span class="here"><span class="num">31</span> · Solitaire</span>
+<div class="langs" role="group" aria-label="Language / Langue / 語言"><button type="button" data-lang="en" aria-pressed="false">EN</button><button type="button" data-lang="fr" aria-pressed="false">FR</button><button type="button" data-lang="zh" aria-pressed="false">中文</button></div>
+<a class="gh" href="https://github.com/vincentlauriat/Solitaire">GitHub</a>
+</div></header>
+<main>
+<section class="title"><div class="wrap g12">
+<h1 class="nm" style="--len:9"><span class="no" aria-label="Work no. 31">31</span><span>Solitaire</span></h1>
+<p class="role"><span class="en">Native Klondike solitaire for macOS</span><span class="fr">Solitaire Klondike natif pour macOS</span><span class="zh">原生 macOS 克朗代克接龍</span></p>
+<div class="t-left">
+<p class="thesis"><span class="en">A native Klondike laid on a felt of gradients — <b>every card is drawn in code</b>.</span><span class="fr">Un Klondike natif posé sur un tapis de dégradés — <b>chaque carte est dessinée en code</b>.</span><span class="zh">一款鋪在漸層牌桌上的原生克朗代克接龍——<b>每一張牌都以程式碼繪製</b>。</span></p>
+<p class='lede'><span class="en">Classic pips, ornate face cards, a navy lattice back. Not a single image asset.</span><span class="fr">Des points classiques, des figures ornées, un dos à treillis bleu marine. Pas une seule image.</span><span class="zh">經典的花色點位、華麗的人頭牌、海軍藍格紋牌背。沒有任何一張圖片素材。</span></p>
+<div class="acts"><a class="btn" href="https://github.com/vincentlauriat/Solitaire/releases/latest"><span class="en">Download for macOS</span><span class="fr">Télécharger pour macOS</span><span class="zh">下載 macOS 版</span></a><a class="lnk" href="https://github.com/vincentlauriat/Solitaire"><span class="en">View on GitHub</span><span class="fr">Voir sur GitHub</span><span class="zh">在 GitHub 上檢視</span><svg class="arw" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4"/></svg></a></div>
+<dl class="facts"><div><dt><span class="en">Requires</span><span class="fr">Configuration</span><span class="zh">系統需求</span></dt><dd>macOS 14+</dd></div><div><dt><span class="en">Distribution</span><span class="fr">Distribution</span><span class="zh">發行</span></dt><dd><span class="en">Signed &amp; notarized DMG</span><span class="fr">DMG signé et notarié</span><span class="zh">已簽章與公證的 DMG</span></dd></div><div><dt><span class="en">Built with</span><span class="fr">Conçu avec</span><span class="zh">開發技術</span></dt><dd>100% SwiftUI</dd></div><div><dt><span class="en">Licence</span><span class="fr">Licence</span><span class="zh">授權</span></dt><dd><span class="en">Free &amp; open source (MIT)</span><span class="fr">Gratuit et open source (MIT)</span><span class="zh">免費開源（MIT）</span></dd></div></dl>
+</div>
+<div class="t-right"><figure class="plate ink"><div class="pl"><img src="screenshot.png" alt="Solitaire running on macOS: green felt table, seven tableau columns of hand-drawn cards, foundations, score bar" width="2280" height="1600" decoding="async"></div><figcaption><span class="fg"><span class="en">Fig.</span><span class="fr">Fig.</span><span class="zh">圖</span> 1</span></figcaption></figure></div>
+</div></section>
+<section class="opener" id="content"><div class="wrap"><div class="op-grid"><div class="numeral" aria-hidden="true">31</div><div class="op-text"><h2><span class="en">Features</span><span class="fr">Fonctionnalités</span><span class="zh">功能</span></h2></div></div></div></section>
+<section class="chapter"><div class="wrap"><ul class="specs"><li><h3><span class="en">Full Klondike</span><span class="fr">Klondike complet</span><span class="zh">完整的克朗代克</span></h3><div><p><span class="en">Draw 1 or draw 3, standard scoring, timer and move counter. The rules you know, the way you expect them.</span><span class="fr">Pioche par 1 ou par 3, score standard, chronomètre et compteur de coups. Les règles que vous connaissez, comme vous les attendez.</span><span class="zh">一次翻 1 張或 3 張、標準計分、計時器與步數計數。你熟悉的規則，就是你期待的樣子。</span></p></div></li><li><h3><span class="en">Real drag &amp; drop</span><span class="fr">Un vrai glisser-déposer</span><span class="zh">真正的拖放</span></h3><div><p><span class="en">Move single cards or whole sequences. Invalid drops glide back; valid ones snap into place instantly.</span><span class="fr">Déplacez une carte ou une séquence entière. Un dépôt invalide revient en glissant ; un dépôt valide se cale instantanément.</span><span class="zh">可移動單張牌或整串牌。無效的放置會滑回原位；有效的放置則立即就定位。</span></p></div></li><li><h3><span class="en">Double-click to play</span><span class="fr">Double-clic pour jouer</span><span class="zh">雙擊出牌</span></h3><div><p><span class="en">Double-click any eligible card and it flies to its foundation. Click the stock to draw, click again to recycle.</span><span class="fr">Double-cliquez sur une carte jouable et elle s'envole vers sa fondation. Cliquez sur la pioche pour tirer, cliquez encore pour la recycler.</span><span class="zh">雙擊任何可出的牌，它就會飛到對應的基礎牌堆。點一下牌庫翻牌，再點一下重新洗回。</span></p></div></li><li><h3><span class="en">Animated everything</span><span class="fr">Tout est animé</span><span class="zh">處處皆動畫</span></h3><div><p><span class="en">Cascading deal, 3D card flips, springy card flights — and confetti when you win.</span><span class="fr">Distribution en cascade, retournements de cartes en 3D, envols de cartes à ressort — et des confettis quand vous gagnez.</span><span class="zh">瀑布式發牌、3D 翻牌、帶彈性的飛牌動畫——獲勝時還有彩帶。</span></p></div></li><li><h3><span class="en">Unlimited undo</span><span class="fr">Annulation illimitée</span><span class="zh">無限復原</span></h3><div><p><span class="en">⌘Z takes back any move, ⌘N deals a fresh game. No penalties, no nagging.</span><span class="fr">⌘Z annule n'importe quel coup, ⌘N distribue une nouvelle partie. Pas de pénalité, pas de rappel insistant.</span><span class="zh">⌘Z 可收回任何一步，⌘N 重新發一局。沒有懲罰，也不會囉嗦提醒。</span></p></div></li><li><h3><span class="en">Auto-complete</span><span class="fr">Fin automatique</span><span class="zh">自動完成</span></h3><div><p><span class="en">Once the whole board is face up, one click on the magic wand finishes the game for you, card by card.</span><span class="fr">Dès que toutes les cartes sont face visible, un clic sur la baguette magique termine la partie pour vous, carte par carte.</span><span class="zh">當整個牌面都翻開後，點一下魔杖，它就會一張一張幫你完成這局。</span></p></div></li></ul></div></section>
+<section class="chapter" id="drawn-in-code"><div class="wrap g12"><div class="ch-head"><h2><span class="en">Every card, drawn in code</span><span class="fr">Chaque carte, dessinée en code</span><span class="zh">每一張牌，都以程式碼繪製</span></h2></div><div class="ch-body"><ul class="specs"><li><h3><span class="en">Pips sit where a real deck puts them.</span><span class="fr">Les points sont là où un vrai jeu les place.</span><span class="zh">花色點位就在真實撲克牌上的位置。</span></h3><div><p><span class="en">Each rank from 2 to 10 uses the classic printed layout — mirrored bottom half included — positioned in SwiftUI from a table of unit coordinates.</span><span class="fr">Chaque valeur de 2 à 10 reprend la disposition imprimée classique — moitié inférieure en miroir comprise — positionnée en SwiftUI à partir d'une table de coordonnées unitaires.</span><span class="zh">從 2 到 10 的每個點數都採用經典的印刷排列——包含鏡像的下半部——並依據一張單位座標表在 SwiftUI 中定位。</span></p></div></li><li><h3><span class="en">Face cards are typographic.</span><span class="fr">Les figures sont typographiques.</span><span class="zh">人頭牌是字體設計。</span></h3><div><p><span class="en">Jack, Queen and King are serif letterforms framed by a gold-lined inset — an engraving reduced to its essence.</span><span class="fr">Valet, Dame et Roi sont des lettres à empattements encadrées d'un filet doré — une gravure réduite à son essence.</span><span class="zh">J、Q、K 是以金色細框圍起的襯線字母——一幅精簡到只剩本質的版畫。</span></p></div></li><li><h3><span class="en">The back is a Canvas.</span><span class="fr">Le dos est un Canvas.</span><span class="zh">牌背是一個 Canvas。</span></h3><div><p><span class="en">Navy gradient, gold diagonal lattice, spade medallion — drawn with a few paths, crisp at any size.</span><span class="fr">Dégradé bleu marine, treillis diagonal doré, médaillon de pique — dessinés avec quelques tracés, nets à toutes les tailles.</span><span class="zh">海軍藍漸層、金色斜格紋、黑桃徽章——只用幾條路徑繪成，任何尺寸都清晰銳利。</span></p></div></li><li><h3><span class="en">Even the app icon is a script.</span><span class="fr">Même l'icône de l'app est un script.</span><span class="zh">連 App 圖示都是一支腳本。</span></h3><div><p><span class="en"><code>Scripts/make-app-icon.swift</code> renders the ace-over-back artwork at every size, pixel-exact, no design tool involved.</span><span class="fr"><code>Scripts/make-app-icon.swift</code> produit l'illustration de l'as posé sur le dos de carte à toutes les tailles, au pixel près, sans aucun outil de design.</span><span class="zh"><code>Scripts/make-app-icon.swift</code> 會以各種尺寸、逐像素精確地繪出「A 疊在牌背上」的圖案，完全不用設計工具。</span></p></div></li></ul></div></div></section><section class="chapter" id="build"><div class="wrap g12"><div class="ch-head"><h2><span class="en">Build from source</span><span class="fr">Compiler depuis les sources</span><span class="zh">從原始碼建置</span></h2></div><div class="ch-body"><pre><code>brew install xcodegen
 git clone https://github.com/vincentlauriat/Solitaire.git
 cd Solitaire
 xcodegen generate
-open Solitaire.xcodeproj   # then ⌘R</code></pre>
-  <p>The engine, the rendering and the interactions are three small layers — a pure-logic <code>KlondikeGame</code>, a <code>Design</code> folder that paints the cards, and one <code>GameView</code> that wires the drag &amp; drop. Start with the <a href="https://github.com/vincentlauriat/Solitaire#readme">README</a>.</p>
-</section>
-
-<footer>
-  <p>MIT © Vincent Lauriat · <a href="https://github.com/vincentlauriat/Solitaire">github.com/vincentlauriat/Solitaire</a> · <a href="https://vincentlauriat.github.io/">more apps</a></p>
-</footer>
-
+open Solitaire.xcodeproj   # then ⌘R</code></pre><p><span class="en">The engine, the rendering and the interactions are three small layers — a pure-logic <code>KlondikeGame</code>, a <code>Design</code> folder that paints the cards, and one <code>GameView</code> that wires the drag &amp; drop. Start with the <a href="https://github.com/vincentlauriat/Solitaire#readme">README</a>.</span><span class="fr">Le moteur, le rendu et les interactions forment trois petites couches — un <code>KlondikeGame</code> de pure logique, un dossier <code>Design</code> qui peint les cartes, et une seule <code>GameView</code> qui câble le glisser-déposer. Commencez par le <a href="https://github.com/vincentlauriat/Solitaire#readme">README</a>.</span><span class="zh">引擎、繪製與互動是三個小分層——純邏輯的 <code>KlondikeGame</code>、負責繪製紙牌的 <code>Design</code> 資料夾，以及串起拖放操作的單一 <code>GameView</code>。請從 <a href="https://github.com/vincentlauriat/Solitaire#readme">README</a> 開始。</span></p></div></div></section>
+<section class="close"><div class="wrap g12"><h2><span class="en">Solitaire for macOS</span><span class="fr">Solitaire pour macOS</span><span class="zh">Solitaire macOS 版</span></h2><div class="c-r"><p><span class="en">Free &amp; open source (MIT) · macOS 14+ · signed &amp; notarized DMG · 100% SwiftUI</span><span class="fr">Gratuit et open source (MIT) · macOS 14+ · DMG signé et notarié · 100 % SwiftUI</span><span class="zh">免費開源（MIT）· macOS 14+ · 已簽章與公證的 DMG · 100% SwiftUI</span></p><div class="acts"><a class="btn" href="https://github.com/vincentlauriat/Solitaire/releases/latest"><span class="en">Download for macOS</span><span class="fr">Télécharger pour macOS</span><span class="zh">下載 macOS 版</span></a><a class="lnk" href="https://github.com/vincentlauriat/Solitaire"><span class="en">View on GitHub</span><span class="fr">Voir sur GitHub</span><span class="zh">在 GitHub 上檢視</span><svg class="arw" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4"/></svg></a></div></div></div></section>
+</main>
+<footer class="colophon"><div class="wrap g12"><div class="c1"><h2>Solitaire</h2><p><span class="en">Work no.</span><span class="fr">Réalisation n°</span><span class="zh">作品編號</span> <span class="num">31</span> <span class="en">in the works of Vincent Lauriat</span><span class="fr">dans les réalisations de Vincent Lauriat</span><span class="zh">收錄於 Vincent Lauriat 作品集</span>.</p><p><a href="https://vincentlauriat.github.io/#w31"><span class="en">All works</span><span class="fr">Toutes les réalisations</span><span class="zh">全部作品</span></a></p></div><div class="c2"><h2><span class="en">Source</span><span class="fr">Source</span><span class="zh">原始碼</span></h2><p><a href="https://github.com/vincentlauriat/Solitaire">github.com/vincentlauriat/Solitaire</a></p><p><span class="en">MIT License</span><span class="fr">Licence MIT</span><span class="zh">MIT 授權</span> · © 2026 Vincent Lauriat</p></div><div class="c3"><h2><span class="en">About this page</span><span class="fr">À propos de cette page</span><span class="zh">關於本頁</span></h2><p><span class="en">Set in Schibsted Grotesk, on the grid of the book it belongs to.</span><span class="fr">Composée en Schibsted Grotesk, sur la grille du livre auquel elle appartient.</span><span class="zh">以 Schibsted Grotesk 排版，沿用其所屬作品集的網格。</span></p></div></div></footer>
+<script src="/assets/monograph/v1/monograph.js"></script>
 </body>
 </html>
