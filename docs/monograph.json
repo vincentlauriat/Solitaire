@@ -1,0 +1,189 @@
+{
+  "name": "Solitaire",
+  "no": "31",
+  "repo": "vincentlauriat/Solitaire",
+  "url": "https://vincentlauriat.github.io/Solitaire/",
+  "accent": "#d9b45c",
+  "meta": {
+    "title": "Solitaire for macOS — a native Klondike where every card is drawn in code",
+    "description": "A beautiful native Klondike solitaire for macOS, written entirely in SwiftUI. Zero image assets — classic pip layouts, ornate face cards and lattice card backs are all drawn in code. Free, open source, signed & notarized.",
+    "og_image": "https://vincentlauriat.github.io/Solitaire/screenshot.png",
+    "favicon": "assets/icon.png"
+  },
+  "role": {
+    "en": "Native Klondike solitaire for macOS",
+    "fr": "Solitaire Klondike natif pour macOS",
+    "zh": "原生 macOS 克朗代克接龍"
+  },
+  "thesis": {
+    "en": "A native Klondike laid on a felt of gradients — <b>every card is drawn in code</b>.",
+    "fr": "Un Klondike natif posé sur un tapis de dégradés — <b>chaque carte est dessinée en code</b>.",
+    "zh": "一款鋪在漸層牌桌上的原生克朗代克接龍——<b>每一張牌都以程式碼繪製</b>。"
+  },
+  "lede": {
+    "en": "Classic pips, ornate face cards, a navy lattice back. Not a single image asset.",
+    "fr": "Des points classiques, des figures ornées, un dos à treillis bleu marine. Pas une seule image.",
+    "zh": "經典的花色點位、華麗的人頭牌、海軍藍格紋牌背。沒有任何一張圖片素材。"
+  },
+  "actions": [
+    {
+      "primary": true,
+      "href": "https://github.com/vincentlauriat/Solitaire/releases/latest",
+      "label": {"en": "Download for macOS", "fr": "Télécharger pour macOS", "zh": "下載 macOS 版"}
+    },
+    {
+      "href": "https://github.com/vincentlauriat/Solitaire",
+      "label": {"en": "View on GitHub", "fr": "Voir sur GitHub", "zh": "在 GitHub 上檢視"}
+    }
+  ],
+  "facts": [
+    {"k": {"en": "Requires", "fr": "Configuration", "zh": "系統需求"}, "v": "macOS 14+"},
+    {"k": {"en": "Distribution", "fr": "Distribution", "zh": "發行"},
+     "v": {"en": "Signed &amp; notarized DMG", "fr": "DMG signé et notarié", "zh": "已簽章與公證的 DMG"}},
+    {"k": {"en": "Built with", "fr": "Conçu avec", "zh": "開發技術"}, "v": "100% SwiftUI"},
+    {"k": {"en": "Licence", "fr": "Licence", "zh": "授權"},
+     "v": {"en": "Free &amp; open source (MIT)", "fr": "Gratuit et open source (MIT)", "zh": "免費開源（MIT）"}}
+  ],
+  "hero": {
+    "src": "screenshot.png",
+    "w": 2280,
+    "h": 1600,
+    "dark": true,
+    "alt": "Solitaire running on macOS: green felt table, seven tableau columns of hand-drawn cards, foundations, score bar"
+  },
+  "opener": {
+    "h": {"en": "Features", "fr": "Fonctionnalités", "zh": "功能"}
+  },
+  "features": [
+    {
+      "h": {"en": "Full Klondike", "fr": "Klondike complet", "zh": "完整的克朗代克"},
+      "p": {
+        "en": "Draw 1 or draw 3, standard scoring, timer and move counter. The rules you know, the way you expect them.",
+        "fr": "Pioche par 1 ou par 3, score standard, chronomètre et compteur de coups. Les règles que vous connaissez, comme vous les attendez.",
+        "zh": "一次翻 1 張或 3 張、標準計分、計時器與步數計數。你熟悉的規則，就是你期待的樣子。"
+      }
+    },
+    {
+      "h": {"en": "Real drag &amp; drop", "fr": "Un vrai glisser-déposer", "zh": "真正的拖放"},
+      "p": {
+        "en": "Move single cards or whole sequences. Invalid drops glide back; valid ones snap into place instantly.",
+        "fr": "Déplacez une carte ou une séquence entière. Un dépôt invalide revient en glissant ; un dépôt valide se cale instantanément.",
+        "zh": "可移動單張牌或整串牌。無效的放置會滑回原位；有效的放置則立即就定位。"
+      }
+    },
+    {
+      "h": {"en": "Double-click to play", "fr": "Double-clic pour jouer", "zh": "雙擊出牌"},
+      "p": {
+        "en": "Double-click any eligible card and it flies to its foundation. Click the stock to draw, click again to recycle.",
+        "fr": "Double-cliquez sur une carte jouable et elle s'envole vers sa fondation. Cliquez sur la pioche pour tirer, cliquez encore pour la recycler.",
+        "zh": "雙擊任何可出的牌，它就會飛到對應的基礎牌堆。點一下牌庫翻牌，再點一下重新洗回。"
+      }
+    },
+    {
+      "h": {"en": "Animated everything", "fr": "Tout est animé", "zh": "處處皆動畫"},
+      "p": {
+        "en": "Cascading deal, 3D card flips, springy card flights — and confetti when you win.",
+        "fr": "Distribution en cascade, retournements de cartes en 3D, envols de cartes à ressort — et des confettis quand vous gagnez.",
+        "zh": "瀑布式發牌、3D 翻牌、帶彈性的飛牌動畫——獲勝時還有彩帶。"
+      }
+    },
+    {
+      "h": {"en": "Unlimited undo", "fr": "Annulation illimitée", "zh": "無限復原"},
+      "p": {
+        "en": "⌘Z takes back any move, ⌘N deals a fresh game. No penalties, no nagging.",
+        "fr": "⌘Z annule n'importe quel coup, ⌘N distribue une nouvelle partie. Pas de pénalité, pas de rappel insistant.",
+        "zh": "⌘Z 可收回任何一步，⌘N 重新發一局。沒有懲罰，也不會囉嗦提醒。"
+      }
+    },
+    {
+      "h": {"en": "Auto-complete", "fr": "Fin automatique", "zh": "自動完成"},
+      "p": {
+        "en": "Once the whole board is face up, one click on the magic wand finishes the game for you, card by card.",
+        "fr": "Dès que toutes les cartes sont face visible, un clic sur la baguette magique termine la partie pour vous, carte par carte.",
+        "zh": "當整個牌面都翻開後，點一下魔杖，它就會一張一張幫你完成這局。"
+      }
+    }
+  ],
+  "chapters": [
+    {
+      "id": "drawn-in-code",
+      "h": {"en": "Every card, drawn in code", "fr": "Chaque carte, dessinée en code", "zh": "每一張牌，都以程式碼繪製"},
+      "blocks": [
+        {
+          "type": "specs",
+          "items": [
+            {
+              "h": {"en": "Pips sit where a real deck puts them.", "fr": "Les points sont là où un vrai jeu les place.", "zh": "花色點位就在真實撲克牌上的位置。"},
+              "p": {
+                "en": "Each rank from 2 to 10 uses the classic printed layout — mirrored bottom half included — positioned in SwiftUI from a table of unit coordinates.",
+                "fr": "Chaque valeur de 2 à 10 reprend la disposition imprimée classique — moitié inférieure en miroir comprise — positionnée en SwiftUI à partir d'une table de coordonnées unitaires.",
+                "zh": "從 2 到 10 的每個點數都採用經典的印刷排列——包含鏡像的下半部——並依據一張單位座標表在 SwiftUI 中定位。"
+              }
+            },
+            {
+              "h": {"en": "Face cards are typographic.", "fr": "Les figures sont typographiques.", "zh": "人頭牌是字體設計。"},
+              "p": {
+                "en": "Jack, Queen and King are serif letterforms framed by a gold-lined inset — an engraving reduced to its essence.",
+                "fr": "Valet, Dame et Roi sont des lettres à empattements encadrées d'un filet doré — une gravure réduite à son essence.",
+                "zh": "J、Q、K 是以金色細框圍起的襯線字母——一幅精簡到只剩本質的版畫。"
+              }
+            },
+            {
+              "h": {"en": "The back is a Canvas.", "fr": "Le dos est un Canvas.", "zh": "牌背是一個 Canvas。"},
+              "p": {
+                "en": "Navy gradient, gold diagonal lattice, spade medallion — drawn with a few paths, crisp at any size.",
+                "fr": "Dégradé bleu marine, treillis diagonal doré, médaillon de pique — dessinés avec quelques tracés, nets à toutes les tailles.",
+                "zh": "海軍藍漸層、金色斜格紋、黑桃徽章——只用幾條路徑繪成，任何尺寸都清晰銳利。"
+              }
+            },
+            {
+              "h": {"en": "Even the app icon is a script.", "fr": "Même l'icône de l'app est un script.", "zh": "連 App 圖示都是一支腳本。"},
+              "p": {
+                "en": "<code>Scripts/make-app-icon.swift</code> renders the ace-over-back artwork at every size, pixel-exact, no design tool involved.",
+                "fr": "<code>Scripts/make-app-icon.swift</code> produit l'illustration de l'as posé sur le dos de carte à toutes les tailles, au pixel près, sans aucun outil de design.",
+                "zh": "<code>Scripts/make-app-icon.swift</code> 會以各種尺寸、逐像素精確地繪出「A 疊在牌背上」的圖案，完全不用設計工具。"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "build",
+      "h": {"en": "Build from source", "fr": "Compiler depuis les sources", "zh": "從原始碼建置"},
+      "blocks": [
+        {
+          "type": "pre",
+          "code": "brew install xcodegen\ngit clone https://github.com/vincentlauriat/Solitaire.git\ncd Solitaire\nxcodegen generate\nopen Solitaire.xcodeproj   # then ⌘R"
+        },
+        {
+          "type": "p",
+          "t": {
+            "en": "The engine, the rendering and the interactions are three small layers — a pure-logic <code>KlondikeGame</code>, a <code>Design</code> folder that paints the cards, and one <code>GameView</code> that wires the drag &amp; drop. Start with the <a href=\"https://github.com/vincentlauriat/Solitaire#readme\">README</a>.",
+            "fr": "Le moteur, le rendu et les interactions forment trois petites couches — un <code>KlondikeGame</code> de pure logique, un dossier <code>Design</code> qui peint les cartes, et une seule <code>GameView</code> qui câble le glisser-déposer. Commencez par le <a href=\"https://github.com/vincentlauriat/Solitaire#readme\">README</a>.",
+            "zh": "引擎、繪製與互動是三個小分層——純邏輯的 <code>KlondikeGame</code>、負責繪製紙牌的 <code>Design</code> 資料夾，以及串起拖放操作的單一 <code>GameView</code>。請從 <a href=\"https://github.com/vincentlauriat/Solitaire#readme\">README</a> 開始。"
+          }
+        }
+      ]
+    }
+  ],
+  "close": {
+    "h": {"en": "Solitaire for macOS", "fr": "Solitaire pour macOS", "zh": "Solitaire macOS 版"},
+    "p": {
+      "en": "Free &amp; open source (MIT) · macOS 14+ · signed &amp; notarized DMG · 100% SwiftUI",
+      "fr": "Gratuit et open source (MIT) · macOS 14+ · DMG signé et notarié · 100 % SwiftUI",
+      "zh": "免費開源（MIT）· macOS 14+ · 已簽章與公證的 DMG · 100% SwiftUI"
+    },
+    "actions": [
+      {
+        "primary": true,
+        "href": "https://github.com/vincentlauriat/Solitaire/releases/latest",
+        "label": {"en": "Download for macOS", "fr": "Télécharger pour macOS", "zh": "下載 macOS 版"}
+      },
+      {
+        "href": "https://github.com/vincentlauriat/Solitaire",
+        "label": {"en": "View on GitHub", "fr": "Voir sur GitHub", "zh": "在 GitHub 上檢視"}
+      }
+    ]
+  }
+}
